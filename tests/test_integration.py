@@ -150,13 +150,18 @@ async def test_repeated_frame_is_one_weighing_but_later_same_weight_is_another(
     first_time = state(hass, ULTIMA)
     assert len(events) == 1
 
-    # Mi sposto sulla bilancia (0x80) e torna lo stesso peso stabile: HA me lo
-    # ripassa perché è diverso dal frame precedente, ma entro 60 s è la stessa
-    # pesata e non deve fare una seconda voce nel registro.
-    inject_bluetooth_service_info(hass, info(REALTIME))
+    # Lo stesso frame ripetuto (solo RSSI diverso) entro 60 s: stessa pesata.
     inject_bluetooth_service_info(hass, info(SOCKS, rssi=-80))
     await hass.async_block_till_done()
     assert len(events) == 1
+
+    # Scendo e risalgo (frame 0x80 in mezzo), stesso identico peso: è una
+    # pesata nuova. Successo davvero il 24 set: calzini, poi scalzo, 113,9 kg
+    # tutte e due le volte, e la seconda era stata scartata.
+    inject_bluetooth_service_info(hass, info(REALTIME))
+    inject_bluetooth_service_info(hass, info(SOCKS, rssi=-70))
+    await hass.async_block_till_done()
+    assert len(events) == 2
 
     # Domani mattina, stesso identico peso. Quando la bilancia tace, HA toglie
     # l'indirizzo dalla sua storia (habluetooth _async_check_unavailable →
@@ -174,7 +179,7 @@ async def test_repeated_frame_is_one_weighing_but_later_same_weight_is_another(
     ):
         inject_bluetooth_service_info(hass, info(SOCKS, rssi=-90))
         await hass.async_block_till_done()
-    assert len(events) == 2
+    assert len(events) == 3
     assert state(hass, ULTIMA) != first_time
     assert state(hass, PESO) == "115.8"
 

@@ -141,6 +141,9 @@ class BilanciaLaica:
             frame.impedance,
         )
         if not frame.is_weighing:
+            # Frame «in corso» (0x80): qualcuno è appena salito. Da qui in poi
+            # il prossimo peso stabile è una pesata nuova, anche se identico.
+            self._last_payload = None
             return
         # La bilancia ripete lo stesso frame finché resta accesa: una pesata
         # sola non deve produrre dieci voci nel registro. Ma due pesate uguali
