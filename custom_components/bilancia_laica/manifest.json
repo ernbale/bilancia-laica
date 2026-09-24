@@ -1,0 +1,20 @@
+{
+  "domain": "bilancia_laica",
+  "name": "Bilancia Laica",
+  "bluetooth": [
+    {
+      "connectable": false,
+      "manufacturer_id": 41218,
+      "manufacturer_data_start": [9, 255]
+    }
+  ],
+  "codeowners": ["@ernbale"],
+  "config_flow": true,
+  "dependencies": ["bluetooth_adapters"],
+  "documentation": "https://github.com/ernbale/bilancia-laica",
+  "integration_type": "device",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/ernbale/bilancia-laica/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}

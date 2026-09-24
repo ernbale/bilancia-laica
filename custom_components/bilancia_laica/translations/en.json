@@ -1,0 +1,96 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "This scale is already configured.",
+      "not_supported": "This Bluetooth device is not a LAICA/YoHealth scale."
+    },
+    "error": {
+      "birth_date_in_future": "The date of birth cannot be in the future.",
+      "invalid_birth_date": "Invalid date of birth.",
+      "invalid_address": "Invalid Bluetooth address (format AA:BB:CC:DD:EE:FF)."
+    },
+    "flow_title": "{name}",
+    "step": {
+      "profile": {
+        "title": "Who is weighing",
+        "description": "Scale {address}. Sex, date of birth and height are used only to compute body composition. They can be changed later from the options: values are recalculated automatically.",
+        "data": {
+          "sex": "Sex",
+          "birth_date": "Date of birth",
+          "height_cm": "Height",
+          "model": "Scale model"
+        }
+      },
+      "user": {
+        "title": "Select the scale",
+        "description": "Step on the scale and pick it from the list, or type its Bluetooth address (usually FF:FF:FF:FF:FF:D0 for the PS7002L).",
+        "data": {
+          "address": "Scale (Bluetooth address)"
+        }
+      }
+    }
+  },
+  "options": {
+    "error": {
+      "birth_date_in_future": "The date of birth cannot be in the future.",
+      "invalid_birth_date": "Invalid date of birth."
+    },
+    "step": {
+      "init": {
+        "title": "Profile",
+        "description": "Changing these values recalculates body composition on the last weighing right away.",
+        "data": {
+          "sex": "Sex",
+          "birth_date": "Date of birth",
+          "height_cm": "Height",
+          "model": "Scale model"
+        }
+      }
+    }
+  },
+  "selector": {
+    "sex": {
+      "options": {
+        "male": "Male",
+        "female": "Female"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "weight": {
+        "name": "Body weight"
+      },
+      "last_weighing": {
+        "name": "Last weighing"
+      },
+      "bmi": {
+        "name": "BMI"
+      },
+      "body_fat": {
+        "name": "Body fat"
+      },
+      "body_water": {
+        "name": "Body water"
+      },
+      "muscle": {
+        "name": "Muscle mass"
+      },
+      "bone_mass": {
+        "name": "Bone mass"
+      },
+      "visceral_fat": {
+        "name": "Visceral fat"
+      },
+      "bmr": {
+        "name": "Basal metabolic rate"
+      },
+      "body_age": {
+        "name": "Body age"
+      },
+      "impedance": {
+        "name": "Impedance"
+      }
+    }
+  }
+}

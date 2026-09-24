@@ -1,0 +1,96 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Questa bilancia è già configurata.",
+      "not_supported": "Questo dispositivo Bluetooth non è una bilancia LAICA/YoHealth."
+    },
+    "error": {
+      "birth_date_in_future": "La data di nascita non può essere nel futuro.",
+      "invalid_birth_date": "Data di nascita non valida.",
+      "invalid_address": "Indirizzo Bluetooth non valido (formato AA:BB:CC:DD:EE:FF)."
+    },
+    "flow_title": "{name}",
+    "step": {
+      "profile": {
+        "title": "Chi si pesa",
+        "description": "Bilancia {address}. Sesso, data di nascita e altezza servono solo per calcolare la composizione corporea (grasso, acqua, muscoli…). Si possono cambiare dopo dalle opzioni: i valori si ricalcolano da soli.",
+        "data": {
+          "sex": "Sesso",
+          "birth_date": "Data di nascita",
+          "height_cm": "Altezza",
+          "model": "Modello bilancia"
+        }
+      },
+      "user": {
+        "title": "Scegli la bilancia",
+        "description": "Sali sulla bilancia e scegliila dall'elenco, oppure scrivi il suo indirizzo Bluetooth (per la PS7002L di solito FF:FF:FF:FF:FF:D0).",
+        "data": {
+          "address": "Bilancia (indirizzo Bluetooth)"
+        }
+      }
+    }
+  },
+  "options": {
+    "error": {
+      "birth_date_in_future": "La data di nascita non può essere nel futuro.",
+      "invalid_birth_date": "Data di nascita non valida."
+    },
+    "step": {
+      "init": {
+        "title": "Profilo",
+        "description": "Cambiando questi valori la composizione corporea si ricalcola subito sull'ultima pesata.",
+        "data": {
+          "sex": "Sesso",
+          "birth_date": "Data di nascita",
+          "height_cm": "Altezza",
+          "model": "Modello bilancia"
+        }
+      }
+    }
+  },
+  "selector": {
+    "sex": {
+      "options": {
+        "male": "Maschio",
+        "female": "Femmina"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "weight": {
+        "name": "Peso corporeo"
+      },
+      "last_weighing": {
+        "name": "Ultima pesata"
+      },
+      "bmi": {
+        "name": "BMI"
+      },
+      "body_fat": {
+        "name": "Grasso corporeo"
+      },
+      "body_water": {
+        "name": "Acqua corporea"
+      },
+      "muscle": {
+        "name": "Massa muscolare"
+      },
+      "bone_mass": {
+        "name": "Massa ossea"
+      },
+      "visceral_fat": {
+        "name": "Grasso viscerale"
+      },
+      "bmr": {
+        "name": "Metabolismo basale"
+      },
+      "body_age": {
+        "name": "Età corporea"
+      },
+      "impedance": {
+        "name": "Impedenza"
+      }
+    }
+  }
+}
