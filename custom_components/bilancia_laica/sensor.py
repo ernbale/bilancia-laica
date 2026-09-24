@@ -17,7 +17,7 @@ from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
-from . import BilanciaConfigEntry, BilanciaLaica
+from . import ICON_URL, BilanciaConfigEntry, BilanciaLaica
 from .const import (
     CONF_MODEL,
     DEFAULT_MODEL,
@@ -157,6 +157,8 @@ class BilanciaSensor(RestoreSensor):
         address: str = entry.data[CONF_ADDRESS]
         model = entry.options.get(CONF_MODEL, DEFAULT_MODEL)
         self._attr_unique_id = f"{address}_{description.key}"
+        if description.key == KEY_WEIGHT:
+            self._attr_entity_picture = ICON_URL
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, address)},
             name=entry.title,

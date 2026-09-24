@@ -11,6 +11,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import date, datetime
 import logging
+from pathlib import Path
 import time
 from typing import Any
 
@@ -21,6 +22,7 @@ from homeassistant.components.bluetooth import (
     BluetoothScanningMode,
     BluetoothServiceInfoBleak,
 )
+from homeassistant.components.http import StaticPathConfig
 from homeassistant.components.logbook import async_log_entry
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_ADDRESS, Platform
@@ -50,6 +52,7 @@ from .protocol import Frame, parse_manufacturer_data
 _LOGGER = logging.getLogger(__name__)
 
 PLATFORMS = [Platform.SENSOR]
+ICON_URL = f"/{DOMAIN}/icon.png"
 REPEAT_WINDOW_S = 60.0
 
 type BilanciaConfigEntry = ConfigEntry[BilanciaLaica]
@@ -242,6 +245,7 @@ class BilanciaLaica:
 async def async_setup_entry(hass: HomeAssistant, entry: BilanciaConfigEntry) -> bool:
     """Avvia l'integrazione per una bilancia."""
     address: str = entry.data[CONF_ADDRESS]
+    await _async_serve_icon(hass)
     scale = BilanciaLaica(hass, entry, address, Profile.from_entry(entry))
     entry.runtime_data = scale
 
@@ -251,6 +255,17 @@ async def async_setup_entry(hass: HomeAssistant, entry: BilanciaConfigEntry) -> 
     entry.async_on_unload(scale.stop)
     entry.async_on_unload(entry.add_update_listener(_async_options_updated))
     return True
+
+
+async def _async_serve_icon(hass: HomeAssistant) -> None:
+    """La foto della bilancia, servita dalla cartella dell'integrazione."""
+    if hass.data.get(f"{DOMAIN}_icon_served"):
+        return
+    hass.data[f"{DOMAIN}_icon_served"] = True
+    icon = Path(__file__).parent / "icon.png"
+    await hass.http.async_register_static_paths(
+        [StaticPathConfig(ICON_URL, str(icon), cache_headers=True)]
+    )
 
 
 async def _async_options_updated(hass: HomeAssistant, entry: BilanciaConfigEntry) -> None:

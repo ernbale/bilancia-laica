@@ -5,12 +5,20 @@
     {
       "connectable": false,
       "manufacturer_id": 41218,
-      "manufacturer_data_start": [9, 255]
+      "manufacturer_data_start": [
+        9,
+        255
+      ]
     }
   ],
-  "codeowners": ["@ernbale"],
+  "codeowners": [
+    "@ernbale"
+  ],
   "config_flow": true,
-  "dependencies": ["bluetooth_adapters"],
+  "dependencies": [
+    "bluetooth_adapters",
+    "http"
+  ],
   "documentation": "https://github.com/ernbale/bilancia-laica",
   "integration_type": "device",
   "iot_class": "local_push",
